@@ -1,6 +1,6 @@
 #FileLock
-#Thu Nov 25 10:16:08 CET 2021
-server=192.168.1.109\:54000
+#Fri Nov 26 10:49:21 CET 2021
+server=192.168.1.109\:60694
 hostName=AbramsPl-DomPC
 method=file
-id=17d56617a45e6e0bb219d5b1ef5cbb91f16dc70d0cd
+id=17d5ba6401702d26273eae3bc6075c08dbc6719355b
