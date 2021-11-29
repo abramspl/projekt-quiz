@@ -11,7 +11,7 @@
     <title>Quiz Application</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
@@ -23,8 +23,9 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Quiz</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand js-scroll-trigger" th:href="@{/}">Aplikacja Quiz - wybierz opcje</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -40,15 +41,7 @@
     </div>
 </nav>
 
-<header class="bg-primary text-white">
-    <div class="container text-center">
-        <h1>Zacznij swoją przygodę</h1>
-        <p class="lead">Śmiało spróbuj swoich sił w quizie!</p>
-        <a class="btn btn-dark" href="select">Zagraj teraz!</a>
-    </div>
-</header>
-
-<section id="about">
+<section id="options">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -59,6 +52,22 @@
                     <li>Wybierz odpowiedni poziom trudności - możesz wybierać pomiędzy łatwym, średnim i trudnym</li>
                     <li>Jeśli jesteś wystarczająco odważny\a, możesz wybrać losową kategorię i poziom trudności.</li>
                 </ul>
+                <form action="#" th:href="@{/select}" th:object="${gameOptions}" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <h4>Pytania:</h4>
+                            <label for="numberOfQuestionsInput">Numer: </label>
+                            <input class="form-control" name="numberOfQuestionsInput" id="numberOfQuestionsInput"
+                                   th:field="*{numberOfQuestions}"
+                                   type="number" min="1" max="20" step="1"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Gramy!</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -69,7 +78,8 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2>Skontaktuj się zemną</h2>
-                <p class="lead">Jeśli chcesz skontaktować się z autorem strony, <a href="mailto:abramspl@gmail.com">napisz</a>!</p>
+                <p class="lead">Jeśli chcesz skontaktować się z autorem strony, <a href="mailto:abramspl@gmail.com">napisz</a>!
+                </p>
             </div>
         </div>
     </div>
@@ -78,7 +88,9 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; AbramsPL <span th:text="${#dates.year(#dates.createNow())}"></span>. Template by <a href="https://startbootstrap.com/templates/scrolling-nav/">Start Bootstrap</a></p>
+        <p class="m-0 text-center text-white">Copyright &copy; AbramsPL <span
+                th:text="${#dates.year(#dates.createNow())}"></span>. Template by <a
+                href="https://startbootstrap.com/templates/scrolling-nav/">Start Bootstrap</a></p>
     </div>
     <!-- /.container -->
 </footer>
