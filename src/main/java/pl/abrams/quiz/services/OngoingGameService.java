@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 import pl.abrams.quiz.QuestionsDto;
 import pl.abrams.quiz.frontend.Difficulty;
 import pl.abrams.quiz.frontend.GameOptions;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@SessionScope
 @Log
 public class OngoingGameService {
     private GameOptions gameOptions;
