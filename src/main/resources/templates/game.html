@@ -45,13 +45,6 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h2>Informacje o Quizie</h2>
-                <p class="lead">Quiz dotyczy twojej wiedzy!</p>
-                <ul>
-                    <li>Możesz wybierać spośród wielu różnych kategorii</li>
-                    <li>Wybierz odpowiedni poziom trudności - możesz wybierać pomiędzy łatwym, średnim i trudnym</li>
-                    <li>Jeśli jesteś wystarczająco odważny\a, możesz wybrać losową kategorię i poziom trudności.</li>
-                </ul>
                 <form action="#" th:action="@{/game}" th:object="${userAnswer}" method="post">
                     <div class="form-row">
                         <h3 th:text="'Question ' + ${currentQuestionNumber} + '/' + ${totalQuestionNumber} + ':'"></h3>
