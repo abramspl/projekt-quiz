@@ -7,6 +7,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import pl.abrams.quiz.QuestionsDto;
 import pl.abrams.quiz.dto.CategoriesDto;
 import pl.abrams.quiz.dto.CategoryQuestionCountInfoDto;
+import pl.abrams.quiz.frontend.Difficulty;
 import pl.abrams.quiz.frontend.GameOptions;
 
 import java.net.URI;
@@ -24,12 +25,22 @@ public class QuizDataService {
     }
 
     public List<QuestionsDto.QuestionDto> getQuizQuestions(GameOptions gameOptions) {
+        CategoryQuestionCountInfoDto categoryQuestionCount = getCategoryQuestionCount(gameOptions.getCategoryId());
+        int availableQuestionCount = categoryQuestionCount.getQuestionCountForDifficulty(gameOptions.getDifficulty());
+        if (availableQuestionCount >= gameOptions.getNumberOfQuestions()) {
+            return getQuizQuestions(gameOptions.getNumberOfQuestions(), gameOptions.getCategoryId(), gameOptions.getDifficulty());
+        } else {
+            return getQuizQuestions(availableQuestionCount, gameOptions.getCategoryId(), gameOptions.getDifficulty());
+        }
+    }
+
+    private List<QuestionsDto.QuestionDto> getQuizQuestions(int numberOfQuestions, int categoryId, Difficulty difficulty) {
         RestTemplate restTemplate = new RestTemplate();
 
         URI uri = UriComponentsBuilder.fromHttpUrl("https://opentdb.com/api.php")
-                .queryParam("amount", gameOptions.getNumberOfQuestions())
-                .queryParam("category", gameOptions.getCategoryId())
-                .queryParam("difficulty", gameOptions.getDifficulty().name().toLowerCase())
+                .queryParam("amount", numberOfQuestions)
+                .queryParam("category", categoryId)
+                .queryParam("difficulty", difficulty.name().toLowerCase())
                 .build().toUri();
         log.info("Pytanie quizu — pobierz URL: " + uri);
 
